@@ -1,1 +1,4 @@
+# Ignorar cualquier archivo que termine con .env, excepto example.env
+*.env
 .env
+!example.env
