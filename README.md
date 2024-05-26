@@ -6,37 +6,39 @@ with modules user
 
 
 ## Project structure
-myapp/
-├── src/
-│   ├── main.go
-│   ├── config/
-│   │   └── database.go
-│   ├── common/
-│   │   └── handlers
-│   │       └── response.go
-│   ├──modules/
-|   │   ├── modules.go
-│   │   ├── user/
-│   │   │   ├── user_module.go
-|   │   │   ├── controller/
-|   │   │   |   └── user_controller.go
-|   │   │   ├── middlawares/
-|   │   │   │   └── body_decode_user.go
-|   │   │   │   └── exits_user.go
-│   │   │   ├── models/
-│   │   │   │   └── user.go
-|   │   │   ├── repository/
-|   │   │   │   └── user_repository.go
-|   │   │   ├── routes/
-|   │   │   │   └── user_router.go
-│   │   │   ├── service/
-|   │   │   │   └── user_service.go
-├── .env
-|── .gitignore
-|── .fresh.yaml
-├── go.mod
-├── go.sum
-└── README.md
+```bash
+        myapp/                                                                                      
+        ├── src/
+        │   ├── main.go
+        │   ├── config/
+        │   │   └── database.go
+        │   ├── common/
+        │   │   └── handlers
+        │   │       └── response.go
+        │   ├──modules/
+        |   │   ├── modules.go
+        │   │   ├── user/
+        │   │   │   ├── user_module.go
+        |   │   │   ├── controller/
+        |   │   │   |   └── user_controller.go
+        |   │   │   ├── middlawares/
+        |   │   │   │   └── body_decode_user.go
+        |   │   │   │   └── exits_user.go
+        │   │   │   ├── models/
+        │   │   │   │   └── user.go
+        |   │   │   ├── repository/
+        |   │   │   │   └── user_repository.go
+        |   │   │   ├── routes/
+        |   │   │   │   └── user_router.go
+        │   │   │   ├── service/
+        |   │   │   │   └── user_service.go
+        ├── .env
+        |── .gitignore
+        |── .fresh.yaml
+        ├── go.mod
+        ├── go.sum
+        └── README.md
+```
 
 ## Cómo Ejecutar
 
