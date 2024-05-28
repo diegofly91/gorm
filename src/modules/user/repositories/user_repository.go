@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"fmt"
 	db "gorm/src/config"
 	"gorm/src/modules/user/models"
 )
@@ -18,7 +19,8 @@ func FindById(id int) models.User {
 }
 
 func Create(user models.User) models.User {
-	db.Database.Save(&user)
+	fmt.Println("create user  ", user)
+	db.Database.Create(&user)
 	return user
 }
 

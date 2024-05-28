@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
+	"gorm/src/common/handlers"
 	"gorm/src/modules/user/models"
 	"gorm/src/modules/user/services"
-
-	"gorm/src/common/handlers"
 	"strconv"
 
 	"net/http"
@@ -25,12 +25,17 @@ func GetUser(rw http.ResponseWriter, r *http.Request) {
 	user := services.FindById(id)
 	handlers.SendData(rw, user, http.StatusOK)
 }
+
 func CreateUser(rw http.ResponseWriter, r *http.Request) {
 	user := models.User{}
 	decode := json.NewDecoder(r.Body)
 	decode.Decode(&user)
-	newuser := services.Create(user)
-	handlers.SendData(rw, newuser, http.StatusCreated)
+
+	fmt.Println(" ============================= ")
+	fmt.Println(user)
+	newUser := services.Create(user)
+	fmt.Println(newUser)
+	handlers.SendData(rw, newUser, http.StatusCreated)
 
 }
 

@@ -8,10 +8,10 @@ import (
 )
 
 type User struct {
-	Id       int64  `json:"id"`
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Email    string `json:"email"`
+	Id       int64  `gorm:"primaryKey;autoIncrement" json:"id"`
+	Username string `gorm:"type:varchar(100);not null;unique" json:"username" validate:"required,min=5,max=100"`
+	Password string `gorm:"type:varchar(100);not null" json:"password" validate:"required,min=8,max=100"`
+	Email    string `gorm:"type:varchar(100);not null;unique" json:"email" validate:"required,email"`
 }
 
 type Users []User

@@ -19,6 +19,7 @@ func main() {
 	// Rutas
 	mux := mux.NewRouter()
 	modules.SetupModules(mux)
+	mux.PathPrefix("/api").Handler(http.StripPrefix("/api", mux))
 	// Servidor
 	log.Fatal(http.ListenAndServe(":"+port, mux))
 
