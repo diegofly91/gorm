@@ -18,5 +18,5 @@ func InitializeUserModule(router *mux.Router, db *gorm.DB) {
 	userService := service.NewUserService(userRepo)
 	userController := controller.NewUserController(userService)
 	// Configurar las rutas
-	routes.UserRoutes(router, userController)
+	routes.UserRoutes(router, userController, userService)
 }

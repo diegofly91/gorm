@@ -33,20 +33,31 @@ func (c *UserController) CreateUser(rw http.ResponseWriter, r *http.Request) {
 	handlers.SendData(rw, newUser, http.StatusCreated)
 }
 
-/*
-func GetUsers(rw http.ResponseWriter, r *http.Request) {
-	users := services.FindAll()
+func (c *UserController) FindAll(rw http.ResponseWriter, r *http.Request) {
+	users := c.service.FindAll()
 	handlers.SendData(rw, users, http.StatusOK)
-
 }
 
-func GetUser(rw http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	id, _ := strconv.Atoi(vars["id"])
-	user := services.FindById(id)
+func (c *UserController) GetUserById(rw http.ResponseWriter, r *http.Request) {
+	id := handlers.GetId(r)
+	user, _ := c.service.FindById(id)
 	handlers.SendData(rw, user, http.StatusOK)
 }
 
+func (c *UserController) UpdateUser(rw http.ResponseWriter, r *http.Request) {
+	id := handlers.GetId(r)
+	var user models.User
+
+	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+		handlers.SendError(rw, http.StatusBadRequest)
+		return
+	}
+	user.Id = int64(id)
+	newUser := c.service.Update(user)
+	handlers.SendData(rw, newUser, http.StatusOK)
+}
+
+/*
 func UpdateUser(rw http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)

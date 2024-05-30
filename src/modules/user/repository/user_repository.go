@@ -8,6 +8,9 @@ import (
 
 type UserRepository interface {
 	CreateUser(user models.User) (models.User, error)
+	FindAll() models.Users
+	FindById(id int) (models.User, error)
+	Update(user models.User) models.User
 }
 
 type userRepository struct {
@@ -23,6 +26,25 @@ func (r *userRepository) CreateUser(user models.User) (models.User, error) {
 		return models.User{}, err
 	}
 	return user, nil
+}
+
+func (r *userRepository) FindAll() models.Users {
+	users := models.Users{}
+	r.db.Find(&users)
+	return users
+}
+
+func (r *userRepository) FindById(id int) (models.User, error) {
+	user := models.User{}
+	if err := r.db.First(&user, id).Error; err != nil {
+		return models.User{}, err
+	}
+	return user, nil
+}
+
+func (r *userRepository) Update(user models.User) models.User {
+	r.db.Save(&user)
+	return user
 }
 
 /*
