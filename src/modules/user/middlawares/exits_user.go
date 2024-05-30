@@ -1,8 +1,9 @@
 package middlawares
 
+/*
 import (
 	"gorm/src/common/handlers"
-	"gorm/src/modules/user/services"
+	"gorm/src/modules/user/service"
 	"net/http"
 	"strconv"
 
@@ -22,3 +23,4 @@ func ExitUser(next http.HandlerFunc) http.HandlerFunc {
 		next.ServeHTTP(rw, r)
 	}
 }
+*/

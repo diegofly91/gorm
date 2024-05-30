@@ -7,7 +7,6 @@ import (
 	"gorm/src/common/handlers"
 	"gorm/src/modules/user/models"
 	"io"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
@@ -16,7 +15,7 @@ import (
 func DecodeUserMiddlaware(next http.HandlerFunc) http.HandlerFunc {
 	return func(rw http.ResponseWriter, r *http.Request) {
 		// Leer el cuerpo de la solicitud original
-		body, err := ioutil.ReadAll(r.Body)
+		body, err := io.ReadAll(r.Body)
 		if err != nil {
 			fmt.Println(err)
 			handlers.SendError(rw, http.StatusInternalServerError)

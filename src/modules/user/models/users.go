@@ -1,8 +1,6 @@
 package models
 
 import (
-	db "gorm/src/config"
-
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -15,10 +13,6 @@ type User struct {
 }
 
 type Users []User
-
-func MigrarUser() {
-	db.Database.AutoMigrate(User{})
-}
 
 // BeforeCreate es un hook de GORM que se llamará antes de crear un registro
 func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
