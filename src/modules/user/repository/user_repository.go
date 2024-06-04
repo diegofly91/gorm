@@ -11,6 +11,7 @@ type UserRepository interface {
 	FindAll() models.Users
 	FindById(id int) (models.User, error)
 	Update(user models.User) models.User
+	Deleted(id int) models.User
 }
 
 type userRepository struct {
@@ -44,6 +45,13 @@ func (r *userRepository) FindById(id int) (models.User, error) {
 
 func (r *userRepository) Update(user models.User) models.User {
 	r.db.Save(&user)
+	return user
+}
+
+func (r *userRepository) Deleted(id int) models.User {
+	user := models.User{}
+	r.db.First(&user, id)
+	r.db.Delete(&user)
 	return user
 }
 

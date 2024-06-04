@@ -57,6 +57,12 @@ func (c *UserController) UpdateUser(rw http.ResponseWriter, r *http.Request) {
 	handlers.SendData(rw, newUser, http.StatusOK)
 }
 
+func (c *UserController) DeleteUser(rw http.ResponseWriter, r *http.Request) {
+	id := handlers.GetId(r)
+	user := c.service.Delete(id)
+	handlers.SendData(rw, user, http.StatusOK)
+}
+
 /*
 func UpdateUser(rw http.ResponseWriter, r *http.Request) {
 

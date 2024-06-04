@@ -17,5 +17,6 @@ func UserRoutes(mux *mux.Router, controller *controller.UserController, service 
 	mux.Handle("/user/{id:[0-9]+}",
 		middlawares.UserExistsMiddleware(service)(
 			middlawares.DecodeUserMiddlaware(http.HandlerFunc(controller.UpdateUser)))).Methods("PUT")
+	mux.Handle("/user/{id:[0-9]+}", middlawares.UserExistsMiddleware(service)(http.HandlerFunc(controller.DeleteUser))).Methods("DELETE")
 	//mux.HandleFunc("/user/{id:[0-9]+}", middlawares.ExitUser(controllers.DeleteUser)).Methods("DELETE")
 }

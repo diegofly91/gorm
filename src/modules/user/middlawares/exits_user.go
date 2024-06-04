@@ -19,6 +19,5 @@ func UserExistsMiddleware(service service.UserService) mux.MiddlewareFunc {
 			}
 			next.ServeHTTP(rw, r)
 		})
-
 	}
 }

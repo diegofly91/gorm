@@ -10,6 +10,7 @@ type UserService interface {
 	FindAll() models.Users
 	FindById(id int) (models.User, error)
 	Update(user models.User) models.User
+	Delete(userId int) models.User
 }
 
 type userService struct {
@@ -34,6 +35,10 @@ func (s *userService) FindById(id int) (models.User, error) {
 
 func (s *userService) Update(user models.User) models.User {
 	return s.repo.Update(user)
+}
+
+func (s *userService) Delete(userId int) models.User {
+	return s.repo.Deleted(userId)
 }
 
 /*

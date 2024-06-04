@@ -12,6 +12,7 @@ import (
 )
 
 func InitializeUserModule(router *mux.Router, db *gorm.DB) {
+	// Crear la tabla de usuario
 	db.AutoMigrate(models.User{})
 	// Inicializar el módulo de usuario
 	userRepo := repository.NewUserRepository(db)
