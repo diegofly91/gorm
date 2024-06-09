@@ -17,3 +17,8 @@ func SendError(rw http.ResponseWriter, status int) {
 	rw.WriteHeader(status)
 	fmt.Fprintln(rw, "Resource not found")
 }
+
+func SendErrorWithMessage(rw http.ResponseWriter, status int, message string) {
+	rw.WriteHeader(status)
+	fmt.Fprintln(rw, message)
+}

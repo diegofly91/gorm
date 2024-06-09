@@ -9,6 +9,7 @@ type UserService interface {
 	CreateUser(user models.User) (models.User, error)
 	FindAll() models.Users
 	FindById(id int) (models.User, error)
+	FindUserByUsername(username string) (models.User, error)
 	Update(user models.User) models.User
 	Delete(userId int) models.User
 }
@@ -19,6 +20,10 @@ type userService struct {
 
 func NewUserService(repo repository.UserRepository) UserService {
 	return &userService{repo}
+}
+
+func (s *userService) FindUserByUsername(username string) (models.User, error) {
+	return s.repo.FindUserByUsername(username)
 }
 
 func (s *userService) CreateUser(user models.User) (models.User, error) {

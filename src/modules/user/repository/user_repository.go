@@ -10,6 +10,7 @@ type UserRepository interface {
 	CreateUser(user models.User) (models.User, error)
 	FindAll() models.Users
 	FindById(id int) (models.User, error)
+	FindUserByUsername(username string) (models.User, error)
 	Update(user models.User) models.User
 	Deleted(id int) models.User
 }
@@ -20,6 +21,14 @@ type userRepository struct {
 
 func NewUserRepository(db *gorm.DB) UserRepository {
 	return &userRepository{db}
+}
+
+func (r *userRepository) FindUserByUsername(username string) (models.User, error) {
+	user := models.User{}
+	if err := r.db.Where("username = ?", username).First(&user).Error; err != nil {
+		return models.User{}, err
+	}
+	return user, nil
 }
 
 func (r *userRepository) CreateUser(user models.User) (models.User, error) {
